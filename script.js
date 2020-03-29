@@ -12,23 +12,20 @@ startButton.addEventListener('click', startGame)
 nextutton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuest()
+})
 
-}
 
 
 ///function to start game
 function startGame () {
-
     console.log('Started')
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5 )
     currentQuestionIndex = 0
-
     questionContainerElement.classList.remove('hide')
-    
-   
-    
+    setnextQuest()
 }
+
 
 //function to select next question 
 function setNextQuest(){
@@ -43,7 +40,8 @@ function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => { 
         const button = document.createElement('button') 
-        button.innerText = answer.textbutton.classList.add('btn')
+        button.innerText = answer.text
+        button.classList.add('btn')
         if     (answer.correct) {
             button.dataset.correct = answer.correct
         
@@ -60,7 +58,7 @@ function resetState() {
     clearStatusClass(document.body) 
     nextButton.classList.add('hide')
     while(answerButtonsElement.firstChild){
-        answerButtonsElement.removeChild
+        answerButtonsElement.removeChild 
         (answerButtonElement.firstChild) 
     }
        
@@ -69,20 +67,15 @@ function resetState() {
 /// function for answer selection
 
 function selectAnswer(){
-    const questions = e.target
+    const selectedButton = e.targe
     const correct = selectedButton.dataset.correct
     setStatustClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
 
     })
-    /// not on last question
-if (shuffledQuestions.length > currentQuestionIndex + 1)
-nextutton.classList.remove('hide')
-} else {
-    startButton.innerText= 'Restart"
-    startButton.classList.remove('hide')
-}}
+}
+
 
 function setStatusClass (element, correct) {
     clearStatusClass(element)
@@ -95,14 +88,24 @@ function setStatusClass (element, correct) {
 
 function clearStatusClass(element) {
     element.classList.remove('correct')
-    element.classList.remove:('wrong')
+    element.classList.remove('wrong')
 }
+
+    /// not on last question
+    if (shuffledQuestions.length > currentQuestionIndex + 1){
+
+        nextutton.classList.remove('hide')
+    }   else {
+            startButton.innerText= "Restart"
+            startButton.classList.remove('hide')
+        }
+        
 
 // Questions & Answers
 const questions = [
     {
         question: 'What is the HTML tag under which one can write the JavaScript code?'
-        answers: [
+        answer: [
             { text: '<javascript>', correct: false}.
             { text: '<scripted>', correct: false}
             { text: '<script>', correct: true}.
